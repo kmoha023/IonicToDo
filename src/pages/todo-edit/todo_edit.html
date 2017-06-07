@@ -5,14 +5,30 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-<ion-navbar>
-  <ion-title>TodoEdit</ion-title>
-</ion-navbar>
-
+  <ion-navbar color="primary">
+    <ion-title>Edit</ion-title>
+  </ion-navbar>
 </ion-header>
+<ion-content padding class="todo-edit">
+  <h2>Description</h2>
+  <ion-textarea #updatedTodo value="{{todo.description}}"></ion-textarea>
+  <small>Status: {{ todo.isComplete ? "Complete" : "Incomplete" }}</small>
 
-
-<ion-content padding>
-
+  <ion-row>
+    <ion-col width-40>
+      <button ion-button default color="secondary" (click)="saveTodo(updatedTodo.value)">
+        Save
+      </button>
+    </ion-col>
+    <ion-col width-40>
+      <button ion-button default color="primary" navPop>
+        Cancel
+      </button>
+    </ion-col>
+    <ion-col width-40>
+      <button ion-button default color="danger"  (click)="deleteTodo()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
 </ion-content>

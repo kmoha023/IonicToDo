@@ -1,34 +1,35 @@
 <!-- home.html -->
-<ion-navbar primary *navbar>
-  <ion-title>
-    Ionic 2 Todo App
-  </ion-title>
-</ion-navbar>
-
-<ion-content class="home" padding>
-  <h2>Add a Todo</h2>
-  <ion-item no-lines>
-    <ion-input #newTodo (keyup.enter)="return;" type="text" placeholder="Add new todo..." ></ion-input>
-    <button clear large item-right (click)="return;">
-      <ion-icon name="add"> </ion-icon>
-    </button>
-  </ion-item>
-
-  <h2>Todo List <small>Swipe a todo to edit or delete</small></h2>
-  <ion-list no-lines>
-    <ion-item-sliding #slidingItem *ngFor="let todo of todos">
-      <ion-item>
-        <ion-checkbox (click)="return;" [checked]="todo.status"></ion-checkbox>
-        <ion-item text-wrap item-left [class.completed]="todo.status">
-          {{ todo.description }}
+  <ion-header>
+  <ion-navbar color="primary" >
+    <ion-title>
+      <ion-icon name="ionic" icon-left color="dark"> </ion-icon>
+       Ionic 3 Todo App
+    </ion-title>
+  </ion-navbar>
+  </ion-header>
+  <ion-content class="home" padding>
+    <h2>Add a Todo</h2>
+    <ion-item no-lines>
+      <ion-input #newTodo (keyup.enter)="addTodo(newTodo.value); newTodo.value=''" type="text" placeholder="Add new todo..." ></ion-input>
+      <button ion-button clear large item-right (click)="addTodo(newTodo.value); newTodo.value=''">
+        <ion-icon name="add-circle" color="primary"  > </ion-icon>
+      </button>
+    </ion-item>
+    <h2>Todo List <small>Swipe a todo to edit or delete</small></h2>
+    <ion-list no-lines>
+      <ion-item-sliding #slidingItem *ngFor="let todo of todos; let index= index">
+        <ion-item>
+          <ion-checkbox (click)="toggleComplete(todo)" [checked]="todo.isComplete"></ion-checkbox>
+          <ion-item text-wrap item-left [class.completed]="todo.isComplete">
+            {{ todo.description }}
+          </ion-item>
         </ion-item>
-      </ion-item>
-      <ion-item-options >
-        <button (click)="return;">Edit</button>
-        <button danger (click)="return;">
-          <ion-icon name="trash"></ion-icon>
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
-</ion-content>
+        <ion-item-options (ionSwipe)="navToEdit(todo, index); slidingItem.close()" >
+          <button ion-button color="primary" (click)="navToEdit(todo, index); slidingItem.close()">Edit</button>
+          <button ion-button color="danger" (click)="deleteTodo(todo,index)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-content>

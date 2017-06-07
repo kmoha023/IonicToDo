@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { TodoService } from '../../providers/todo-service/todo-service';
+import { ToDo } from '../../app/todo';
+
 /**
  * Generated class for the TodoEditPage page.
  *
@@ -13,12 +16,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: './todo_edit.html',
 })
 export class TodoEditPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public todo: ToDo; // The Todo itself
+  public todos: ToDo[]; // The list todos from the main page
+  public index: number;// The index of the todo we're looking at
+  constructor(public todoService:TodoService,public navCtrl: NavController, public navParams: NavParams) {
+    this.todo = navParams.get('todo');
+    this.todos = navParams.get('todos');
+    this.index = navParams.get('index');
+    
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TodoEditPage');
+  saveTodo(updatedDescription: string){
+    this.todo.description = updatedDescription;
+    this.todoService.update(this.todo)
+        .subscribe(data => {
+          this.navCtrl.pop();// go back to Todo list
+        });
   }
 
+  deleteTodo(){
+    this.todoService.delete(this.todo)
+        .subscribe(response => {
+          this.todos.splice(this.index, 1); //remove the Todo
+          this.navCtrl.pop(); //go back to todo List
+      });
+  }
 }

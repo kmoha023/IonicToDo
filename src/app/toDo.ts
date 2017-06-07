@@ -2,13 +2,10 @@
  * Created by mdkha on 5/28/2017.
  */
 
-export class ToDo{
+export class ToDo {
 
-  _id : string;
-  name : string;
+  _id: number;
   description: string;
-  status : string[];
-  __v:number;
-  created_date: string;
+  isComplete: boolean;
 
 }
