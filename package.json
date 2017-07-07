@@ -25,6 +25,7 @@
     "@ionic-native/status-bar": "3.10.2",
     "@ionic/storage": "2.0.1",
     "body-parser": "^1.17.2",
+    "cordova": "^7.0.1",
     "cors": "^2.8.3",
     "express": "^4.15.3",
     "ionic-angular": "3.3.0",
