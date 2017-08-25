@@ -1,0 +1,1 @@
+exports.mongoURI = "mongodb://heroku_g4b9k450:8dulqr397pciug9molonpp37lo@ds111262.mlab.com:11262/heroku_g4b9k450";

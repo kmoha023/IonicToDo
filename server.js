@@ -9,11 +9,8 @@ var mongodb = require('mongodb'),
     mongoClient = mongodb.MongoClient,
     ObjectID = mongodb.ObjectID, // Used in API endpoints
     db; // We'll initialize connection below
-<<<<<<< HEAD
-=======
 
 var constant = require('./constants/constants');
->>>>>>> origin/master
 
 app.use(bodyParser.json());
 app.set('port', process.env.PORT || 8080);
