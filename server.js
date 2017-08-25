@@ -9,6 +9,11 @@ var mongodb = require('mongodb'),
     mongoClient = mongodb.MongoClient,
     ObjectID = mongodb.ObjectID, // Used in API endpoints
     db; // We'll initialize connection below
+<<<<<<< HEAD
+=======
+
+var constant = require('./constants/constants');
+>>>>>>> origin/master
 
 app.use(bodyParser.json());
 app.set('port', process.env.PORT || 8080);
@@ -16,7 +21,7 @@ app.use(cors()); // CORS (Cross-Origin Resource Sharing) headers to support Cros
 app.use(express.static("www")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
 
 //Must remove the mongodb://heroku_.... string
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_g4b9k450:8dulqr397pciug9molonpp37lo@ds111262.mlab.com:11262/heroku_g4b9k450";
+var MONGODB_URI = process.env.MONGODB_URI || constant.mongoURI; //"mongodb://heroku_g4b9k450:8dulqr397pciug9molonpp37lo@ds111262.mlab.com:11262/heroku_g4b9k450";
 
 // Initialize database connection and then start the server.
 mongoClient.connect(MONGODB_URI, function (err, database) {
