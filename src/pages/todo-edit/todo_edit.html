@@ -11,12 +11,12 @@
 </ion-header>
 <ion-content padding class="todo-edit">
   <h2>Description</h2>
-  <ion-textarea #updatedTodo value="{{todo.description}}"></ion-textarea>
+  <ion-textarea #updatedTodo="ngModel" [ngModel]="todo.description" required name="updatedTodo"></ion-textarea>
   <small>Status: {{ todo.isComplete ? "Complete" : "Incomplete" }}</small>
 
   <ion-row>
     <ion-col width-40>
-      <button ion-button default color="secondary" (click)="saveTodo(updatedTodo.value)">
+      <button ion-button default color="secondary" [disabled]="!updatedTodo.valid" (click)="saveTodo(updatedTodo.value)">
         Save
       </button>
     </ion-col>

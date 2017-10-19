@@ -23,6 +23,7 @@ export class TodoEditPage {
     this.todo = navParams.get('todo');
     this.todos = navParams.get('todos');
     this.index = navParams.get('index');
+    console.log("Todo value "+this.todo.description);
     
   }
 

@@ -31,9 +31,6 @@ export class TodoService {
       .catch(this.handleError);
   }
 
-
-
-
    //ADD TODO
   add(todo: string): Observable<ToDo> {
     let body = JSON.stringify({description: todo});
